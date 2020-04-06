@@ -6,7 +6,6 @@
 
 from urllib.request import urlopen, hashlib
 
-
 # STEP 1: Get the SHA-1 Hash from the user
 
 sha1hash = input("Input the hash to crack :) ")
@@ -21,6 +20,8 @@ LIST_OF_COMMON_PASSWORDS = str(
 
 # STEP 3: Guess from the list of passwords
 for guess in LIST_OF_COMMON_PASSWORDS.split('\n'):
+    # We use hashlib to turn each password in the file into a SHA-1 hash. In order to
+    # use this function, we need to cast each password into a bytes object first.
     hashedGuess = hashlib.sha1(bytes(guess, 'utf-8')).hexdigest()
     if hashedGuess == sha1hash:
         print("The password is ", str(guess))
