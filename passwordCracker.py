@@ -8,10 +8,14 @@ from urllib.request import urlopen, hashlib
 
 # STEP 1: Get the SHA-1 Hash from the user
 
+# For this program, the user will need to input a SHA-1 hash rather than a plain text password
+# Plain text can be hashed using websites such as http://www.sha1-online.com/
 sha1hash = input("Input the hash to crack :) ")
 
-
 # STEP 2: Open a file of common passwords
+
+# str() is used so that our program knows it is reading text from a file. Similarly, we provide the argument 'utf-8'
+# to indicate that we are using UTF-8 encoding.
 LIST_OF_COMMON_PASSWORDS = str(
     urlopen(
         'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt').read(),
@@ -27,6 +31,7 @@ for guess in LIST_OF_COMMON_PASSWORDS.split('\n'):
         print("The password is ", str(guess))
         quit()
     elif hashedGuess != sha1hash:
-        print("Password guess ", str(guess), " does not match, trying next...")
+        print("Password guess ", str(guess),
+              " does not match :( attempting next hash")
 
-print("The password is not part of the 10000 most common")
+print("The hash inputed does not belong to one of the 10,000 most commonly used passwords")
