@@ -1,2 +1,2 @@
 # password-cracker
-a beginner/simple implementation of a password cracker! 
+a super simple implementation of a password cracker for comp6441
